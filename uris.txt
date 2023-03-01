@@ -1,0 +1,24 @@
+http://localhost:8000/currency-exchange/from/EUR/to/LKR -> currency exchange server
+http://localhost:8100/currency-converter-feign/from/USD/to/LKR/quantity/100 ->currency conversion server
+http://localhost:8761/ -> eureka server
+http://localhost:8080/limits/default
+
+
+http://localhost:8765/CURRENCY-EXCHANGE-SERVICE/currency-exchange/from/EUR/to/LKR
+http://localhost:8765/CURRENCY-CONVERSION-SERVICE/currency-converter-feign/from/USD/to/LKR/quantity/1000
+
+with lower caseId enabled
+http://localhost:8765/currency-exchange-service/currency-exchange/from/EUR/to/LKR
+http://localhost:8765/currency-conversion-service/currency-converter-feign/from/USD/to/LKR/quantity/1000
+
+
+http://localhost:8765/currency-exchange/from/EUR/to/LKR
+http://localhost:8765/currency-converter/from/USD/to/LKR/quantity/1000
+http://localhost:8765/currency-converter-feign/from/USD/to/LKR/quantity/1000
+http://localhost:8765/currency-converter-new/from/USD/to/LKR/quantity/1000
+
+docker run -p 8761:8761 -d --rm kaveenprabodhya99/msv2-netflix-eureka-naming-server:0.0.1-SNAPSHOT
+docker run -p 8000:8000 -d --rm kaveenprabodhya99/msv2-currency-exchange-service:0.0.1-SNAPSHOT
+docker run -p 8100:8100 -d --rm kaveenprabodhya99/msv2-currency-conversion-service:0.0.1-SNAPSHOT
+docker run -p 8765:8765 -d --rm kaveenprabodhya99/msv2-api-gateway:0.0.1-SNAPSHOT
+docker run -d -p --rm 9411:9411 openzipkin/zipkin
